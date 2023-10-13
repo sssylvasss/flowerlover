@@ -16,7 +16,7 @@ const db = mysql.createPool({
 
 app.get("/", (req, res) => {
   db.query(
-    "INSERT INTO users(usernamn, password) VALUES ('Testtest', '123')",
+    "INSERT INTO users(username, password) VALUES ('Testtest', '123')",
     (err, result) => {
       if (err) {
         console.log(err);
