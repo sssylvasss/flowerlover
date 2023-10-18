@@ -42,7 +42,7 @@ function Signup() {
           <button type='button'>Cancel</button>
           <button type='submit'>Submit</button>
         </div>
-        {error ? <p>problem</p> : null}
+        {error ? <p>{error}</p> : null}
         {user ? <Navigate to='/profile' replace={true} /> : null}
       </form>
     </div>
