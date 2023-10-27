@@ -69,6 +69,44 @@ app.post('/signin', (req, res) => {
     }
   )
 })
+
+app.get('/find-friends', (req, res) => {
+  const username = req.query.user
+  db.query(
+    'SELECT u.username FROM users u WHERE u.user_id NOT IN (SELECT f.friend FROM friends f WHERE user = (SELECT u.user_id FROM users u WHERE username = ? )) AND username != ?',
+    [username, username],
+    (err, result) => {
+      if (err) {
+        res.status(418).send('An error')
+      }
+      if (result) {
+        res.send(result)
+      }
+    }
+  )
+})
+
+app.post(`/:id/add-friend`, (req, res) => {
+  const user = req.params.id
+  const friend = req.body.username
+  console.log({ user })
+  console.log({ friend })
+
+  db.query(
+    'INSERT INTO friends (user, friend) VALUE ((SELECT user_id FROM users WHERE username = ?), (SELECT user_id FROM users WHERE username = ?))',
+    [user, friend],
+    (err, result) => {
+      if (err) {
+        console.log(err)
+        res.status(418).send('Error')
+      }
+      if (result) {
+        res.send({ added: true })
+      }
+    }
+  )
+})
+
 app.listen(8080, () => {
   console.log('server 8080')
 })

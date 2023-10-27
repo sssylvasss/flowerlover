@@ -16,6 +16,7 @@ import Profile from './pages/Profile'
 
 import configureStore from './store/store'
 import { Provider } from 'react-redux'
+import FindFriends from './pages/FindFriends'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<Signup />} />
       <Route path='/signin' element={<Signin />} />
       <Route path='/profile' element={<Profile />} />
+      <Route path='/find-friends' element={<FindFriends />} />
       <Route path='*' element={<Error />} />
     </Route>
   )

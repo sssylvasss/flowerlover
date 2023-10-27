@@ -30,6 +30,9 @@ export default function Navigation() {
             <Link to='/profile'>Profile</Link>
           </li>
           <li>
+            <Link to='/find-friends'>Friends</Link>
+          </li>
+          <li>
             <Link to='/' onClick={() => dispatch(logout())}>
               Logout
             </Link>
