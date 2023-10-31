@@ -4,10 +4,13 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export const FindFriends = () => {
-  const user = useSelector((state) => state.auth.user)
+  const user = useSelector((state) => state.auth.user.username)
   const [users, setUsers] = useState([])
   const [error, setError] = useState(null)
   const [added, setAdded] = useState([])
+
+  console.log('uuuser', user)
+
   useEffect(() => {
     axios
       .get('http://localhost:8080/find-friends', { params: { user } })

@@ -24,6 +24,8 @@ export default function Navigation() {
         <ul
           style={{
             display: 'flex',
+            width: '500px',
+            justifyContent: 'space-between',
           }}
         >
           <li>

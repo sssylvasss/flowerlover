@@ -10,7 +10,6 @@ function Signin() {
   const error = useSelector((state) => state.auth.error)
   const dispatch = useDispatch()
 
-  console.log('signin', user)
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(signin({ username, password })).then(() => {

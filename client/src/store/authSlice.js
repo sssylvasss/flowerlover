@@ -51,7 +51,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signup.fulfilled, (state, action) => {
-        state.user = action.payload.user
+        state.user = action.payload
         state.isLoggedIn = true
         state.loading = false
         state.error = null

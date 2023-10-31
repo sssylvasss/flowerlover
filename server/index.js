@@ -31,13 +31,26 @@ app.post('/signup', (req, res) => {
       res.status(418).send('Could not hash pass')
     } else {
       db.query(
-        'INSERT INTO users(username, password ) VALUES (?, ?)',
+        'INSERT INTO users(username, password) VALUES (?, ?)',
         [username, hashedPassword],
         (err) => {
           if (err) {
             res.status(418).send('Could not registrate user')
           } else {
-            res.send({ username: username })
+            // Query to get the last inserted user_id
+            db.query(
+              'SELECT user_id, username FROM users WHERE user_id = LAST_INSERT_ID()',
+              (err, result) => {
+                if (err) {
+                  res.status(418).send('Could not retrieve user data')
+                } else {
+                  res.send({
+                    user_id: result[0].user_id,
+                    username: result[0].username,
+                  })
+                }
+              }
+            )
           }
         }
       )
@@ -59,7 +72,10 @@ app.post('/signin', (req, res) => {
       } else {
         bcrypt.compare(password, result[0].password, (err, match) => {
           if (match) {
-            res.send({ result })
+            res.send({
+              user_id: result[0].user_id,
+              username: result[0].username,
+            })
           }
           if (!match) {
             res.status(418).send('Pass dont match')

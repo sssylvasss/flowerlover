@@ -4,7 +4,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export const Friends = () => {
-  const user = useSelector((state) => state.auth.user)
+  const user = useSelector((state) => state.auth.user.username)
   const [users, setUsers] = useState([])
   const [error, setError] = useState(null)
 
