@@ -17,16 +17,20 @@ import Profile from './pages/Profile'
 import configureStore from './store/store'
 import { Provider } from 'react-redux'
 import FindFriends from './pages/FindFriends'
+import Friends from './pages/Friends'
+import Home from './pages/Home'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout />}>
       <Route path='/' element={<App />} />
+      <Route path='/home' element={<Home />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/signin' element={<Signin />} />
       <Route path='/profile' element={<Profile />} />
-      <Route path='/find-friends' element={<FindFriends />} />
       <Route path='*' element={<Error />} />
+      <Route path='/find-friends' element={<FindFriends />} />
+      <Route path='/your-friends' element={<Friends />} />
     </Route>
   )
 )

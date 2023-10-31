@@ -42,7 +42,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: (state, action) => {
-      state.user = ''
+      state.user = null
       state.isLoggedIn = false
       state.loading = false
       state.error = null
@@ -51,7 +51,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(signup.fulfilled, (state, action) => {
-        state.user = action.payload.username
+        state.user = action.payload.user
         state.isLoggedIn = true
         state.loading = false
         state.error = null
@@ -65,7 +65,7 @@ export const authSlice = createSlice({
         state.error = action.payload
       })
       .addCase(signin.fulfilled, (state, action) => {
-        state.user = action.payload.username
+        state.user = action.payload
         state.isLoggedIn = true
         state.loading = false
         state.error = null

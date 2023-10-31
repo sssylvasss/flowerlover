@@ -10,6 +10,7 @@ function Signin() {
   const error = useSelector((state) => state.auth.error)
   const dispatch = useDispatch()
 
+  console.log('signin', user)
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(signin({ username, password })).then(() => {
@@ -41,7 +42,7 @@ function Signin() {
           <button type='submit'>Submit</button>
         </div>
         {error ? <p>{error}</p> : null}
-        {user ? <Navigate to='/profile' replace={true} /> : null}
+        {user.username ? <Navigate to='/profile' replace={true} /> : null}
       </form>
     </div>
   )
